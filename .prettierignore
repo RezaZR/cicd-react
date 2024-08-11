@@ -1,6 +1,5 @@
-# Ignore artifacts
 build/
 dist/
-
-# Ignore specific rules
+public
+node_modules
 package-lock.json
