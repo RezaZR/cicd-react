@@ -1,48 +1,32 @@
 module.exports = {
-  env: {
-		browser: true,
-		es2021: true,
-  },
+	root: true,
+	env: { browser: true, es2020: true },
   extends: [
-		'standard',
+		'eslint:recommended',
+		'plugin:@typescript-eslint/recommended',
+		'plugin:react-hooks/recommended',
 		'plugin:react/recommended',
-		'plugin:react/jsx-runtime',
-		'prettier'
+		'prettier',
 	],
-	files: ['**/*.{js,jsx,ts,tsx}'],
-  overrides: [
-		{
-			env: {
-					node: true,
-			},
-			files: ['.eslintrc.{js,cjs}'],
-			parserOptions: {
-					sourceType: 'script',
-			},
-		},
-  ],
-  parserOptions: {
-		ecmaVersion: 'latest',
-		sourceType: 'module',
-  },
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts'],
+	parser: '@typescript-eslint/parser',
   plugins: [
-		'react-hooks',
 		'react-refresh',
 		'react',
 		'@typescript-eslint',
-		'prettier'
+		'prettier',
 	],
   rules: {
-    'react/react-in-jsx-scope': 'off',
+		'react/react-in-jsx-scope': "off",
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
     ],
-    'prettier/prettier': 'error',
+		'prettier/prettier': 'error',
   },
-  settings: {
-      react: {
-          version: 'detect',
-      },
-  },
+	settings: {
+		react: {
+			version: 'detect',
+		},
+	},
 };

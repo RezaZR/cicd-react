@@ -6,9 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "precommit": "lint-staged",
-    "prepare": "husky install",
+    "lint": "eslint src --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,html}",
     "preview": "vite preview"
   },
@@ -20,16 +19,17 @@
     "@eslint/js": "^9.8.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
-    "eslint": "^9.8.0",
+    "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
-    "husky": "^9.1.4",
-    "lint-staged": "^15.2.8",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "prettier": "^3.3.3",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.0",
@@ -37,12 +37,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run precommit"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run lint && npm run format"
     }
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
+      "npm run lint",
+      "npm run format"
     ]
   }
 }
